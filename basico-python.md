@@ -150,9 +150,80 @@ for, from, global, if, import, in, is, lambda, None, nonlocal, not, or, pass, ra
 return, True, try, while, with, yield
 ```
 
-## Módulos
+## Módulos (Modules)
 
-…
+Um `módulo` nada mais é do que um `arquivo` contendo `comandos` do Python, que serão executados pelo seu interpretador. 
+
+Como dito anteriormente, Python é uma linguagem `interpretada` de `script`, ou seja, não existe uma etapa de `compilação` prévia como outras linguagens (C#, por exemplo). 
+
+O código Python é `interpretada` em tempo de execução. O código é `lido` e `executado` de forma sequencial, por isso é chamado de script.
+
+Os programas python são compostos por diversos módulos.
+
+Cada módulo pode conter tanto `instruções executáveis` quanto definições de `funções` e `classes`.
+
+A seguir é exibido um `arquivo (módulo)` python:
+
+```python
+# -*- utf-8 -*
+# File: matematica.py
+
+import math
+
+def fatorial(x):
+	return math.factorial(x)
+	
+def soma(x, y):
+	return x + y
+```
+
+Acima é exibido o arquivo `matematica.py` contendo a definição de duas `funções`: `fatorial` e `soma`.
+
+É importante observar que `módulos` Python podem ser reaproveitados, assim o desenvolvedor não precisa re-escrever ou duplicar código.
+
+Para isso, basta realizar a importação de um `módulo` já existente, conforme demonstrado na instrução `import math` do arquivo acima.
+
+Existem diversos `módulos` Python disponíveis. Alguns desses `módulos` são disponibilizados pela própria Python Fondation e já acompanham a instalação padrão do Python. Outros `módulos` são criados pela `comunidade` e distribuídos livremente na web. Além dissp, você pode criar seus próprios `módulos` e importá-los no seu programa Python.
+
+## Pacotes (Packages)
+
+Um `pacote` Python nada mais é do que um `conjunto` de `módulos` Python. Os pacotes servem para deixar o projeto mais `organizado`.
+
+Para criar um `pacote` Python, basta criar um `diretório` contendo um arquivo chamado `__init__.py` dentro dele. Sempre que o `interpretador` Python localizar um arquivo `__init__.py` dentro de uma pasta, este saberá que ali existe um `pacote`.
+
+Assim como os `módulos` um `pacote` Python também pode ser importados. Por exemplo:
+
+```python
+from os import path
+
+print(path.isdir('C:\Windows')
+```
+
+O código acima, realiza a importação do módulo `path` a partir do pacote `os`.
+
+Caso queria o desenvolvedor também pode importar todo o `pacote`, como demonstrado a seguir:
+
+```python
+import os
+
+print(os.path.isdir('C:\Windows')
+```
+
+O código acima, importa o pacote `os`. Dessa forma, todos os `módulos` disponíveis no pacote `os` ficarão acessíveis no escopo atual.
+
+Você também pode criar `subpacotes`(`pacotes` dentro de `pacotes`), basta que para cada subpasta exista um arquivo `__init__.py`. Exemplo: 
+
+```
+pacoteA
+|_ __init__.py
+|_ moduloA.py
+|_ pacoteB
+   |_ __init__.py
+   |_ moduloB.py
+   |_ pacoteC
+      |_ __init__.py
+	  |_ moduloC.py
+```
 
 ## Estruturas de dados
 
@@ -204,3 +275,4 @@ indentação
 * https://www.devmedia.com.br/como-criar-minha-primeira-classe-em-python/38912
 * https://en.wikipedia.org/wiki/Primitive_data_type
 * https://en.wikipedia.org/wiki/Composite_data_type
+* https://docs.python.org/pt-br/3/tutorial/modules.html
