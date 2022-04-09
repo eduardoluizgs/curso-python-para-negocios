@@ -209,11 +209,40 @@ def soma(x, y):
 
 Acima é exibido o arquivo `matematica.py` contendo a definição de duas `funções`: `fatorial` e `soma`.
 
+A primeira linha `# -*- coding: utf-8 -*-` seta a codificação padrão do arquivo, permitindo a inserção de caracteres especiais como `acentos` nos comentários do código.
+
 É importante observar que `módulos` Python podem ser reaproveitados, assim o desenvolvedor não precisa re-escrever ou duplicar código.
 
 Para isso, basta realizar a importação de um `módulo` já existente, conforme demonstrado na instrução `import math` do arquivo acima.
 
 Existem diversos `módulos` Python disponíveis. Alguns desses `módulos` são disponibilizados pela própria biblioteca padrão do Python. Outros `módulos` são criados pela `comunidade` e distribuídos livremente na web. Além disso, você pode criar seus próprios `módulos` e importá-los no seu programa Python.
+
+Caso querira ver a documentação de algum módulo específico, execute o comando `help('nome_do_modulo')`:
+
+```python
+help('math')
+# Resultado:
+# Help on module math:
+
+# NAME
+#     math
+
+# FILE
+#     /System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/math.so
+
+# MODULE DOCS
+#     https://docs.python.org/library/math
+
+# DESCRIPTION
+#     This module is always available.  It provides access to the
+#     mathematical functions defined by the C standard.
+
+# FUNCTIONS
+#     acos(...)
+#         acos(x)
+
+#         Return the arc cosine (measured in radians) of x.
+````
 
 ## Pacotes (Packages)
 

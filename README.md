@@ -6,3 +6,5 @@ Este repositório tem como objetivo reunir conteúdo para aprendizado da linguag
 
 * Instalação e Configuração
 * [Básico do Python](/basico-python.md)
+* [Básico de Pandas](/basico-pandas.md)
+
