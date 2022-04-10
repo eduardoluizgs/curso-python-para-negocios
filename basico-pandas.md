@@ -226,13 +226,17 @@ print(idades_dos_alunos ** 2)
 
 ## Testando o código com ambiente interativo
 
-Caso queira testar os códigos acima com um ambiente de desenvolvimento mais interativo, veja a seção [Instalação e Configuração do Jupyter](./instalacao-configuracao-jupyter.md)
+Caso queira testar os códigos acima com um ambiente de desenvolvimento mais interativo, veja a seção [Instalação e Configuração do Jupyter](./instalacao-configuracao-jupyter.md).
+
+![Jupyter Notebook](./images/jupyter-notebook-sample.png)
 
 ## Dataframe
 
-Um `DataFrame (quadro de dados)` é comparado a uma `planilha de excel` ou `tabela do banco de dados`, composto por `colunas`, `linhas` e adicionalmente um `índice`.
+Um `DataFrame (quadro de dados)` é uma estrutura de dados `bidimensional` comparado a uma `planilha de excel` ou `tabela do banco de dados`, composto por `colunas`, `linhas` e um `índice`.
 
 Toda `arquivo` lido pelo `Pandas` torna-se um `DataFrame` por padrão.
+
+Abaixo é mostrado um diagrama com a estrugura de uma `DataFrame`:
 
 ```
     |            Colunas                 |
@@ -244,6 +248,259 @@ Toda `arquivo` lido pelo `Pandas` torna-se um `DataFrame` por padrão.
 | c |          |          |              |
 | e |          |          |              |
 ```
+
+### Leitura de Dados
+
+Assim como no objeto `série`, podemos criar um `DataFrame` a partir de um `dicionário`de dados:
+
+```python
+# -*- coding: utf-8 -*-
+
+import pandas as pd
+
+alunos = {
+    'nomes': [],
+    'faltas': [],
+    'notas': []
+}
+
+alunos_dataframe = pd.DataFrame(alunos)
+
+# imprime o dataframe de alunos
+print(alunos_dataframe)
+# Resultado:
+#       nomes  faltas  notas
+# 0   Eduardo       2    9.0
+# 1    Heline       1    8.5
+# 2  Cristina       0    7.0
+# 3      Luiz       3    6.0
+```
+
+Veja o mesmo resultado executado no `Jupyter Notebook`:
+
+![Jupyter Noteboom DataFramew](./images/jupyter-notebook-sample-dataframe.png)
+
+Também podemos usar métodos já existentes do `Pandas` para realizar a leitura de arquivos ou fontes de dados.
+
+Para ler um arquivo `.csv` basta executar:
+
+```python
+# -*- coding: utf-8 -*-
+
+# captura o caminho do arquivo de dados
+base_path = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(base_path, 'data', 'brasil-estados.csv')
+
+# realiza leitura do arquivo CSV
+estados_dataframe = pd.read_csv(file_path, header=0, sep=';')
+
+# imprime um DataFrame com as colunas ESTADO e UF
+print(estados_dataframe[['Estado', 'UF']])
+# Resultado:
+#                  Estado  UF
+# 0              Rondônia  RO
+# 1                  Acre  AC
+# 2              Amazonas  AM
+# 3               Roraima  RR
+# 4                  Pará  PA
+# 5                 Amapá  AP
+# 6             Tocantins  TO
+# 7              Maranhão  MA
+# 8                 Piauí  PI
+# 9                 Ceará  CE
+# 10  Rio Grande do Norte  RN
+# 11              Paraíba  PB
+# 12           Pernambuco  PE
+# 13              Alagoas  AL
+# 14              Sergipe  SE
+# 15                Bahia  BA
+# 16         Minas Gerais  MG
+# 17       Espírito Santo  ES
+# 18       Rio de Janeiro  RJ
+# 19            São Paulo  SP
+# 20               Paraná  PR
+# 21       Santa Catarina  SC
+# 22    Rio Grande do Sul  RS
+# 23   Mato Grosso do Sul  MS
+# 24          Mato Grosso  MT
+# 25                Goiás  GO
+# 26     Distrito Federal  DF
+```
+
+A seguir são apresentados alguns comandos básicos para `leitura` de dados em um `DataFrame`:
+
+```python
+# -*- coding: utf-8 -*-
+
+# imprime apenas as primeiras linhas do DataFrame
+print(estados_dataframe.head())
+# Resultado:
+#   IBGE    Estado  UF        Região  Qtd Mun
+# 0    11  Rondônia  RO  Região Norte       52
+# 1    12      Acre  AC  Região Norte       22
+# 2    13  Amazonas  AM  Região Norte       62
+# 3    14   Roraima  RR  Região Norte       15
+# 4    15      Pará  PA  Região Norte      144
+
+
+# imprime as últimas linhas do dataframe
+print(estados_dataframe.tail())
+# Resultado:
+#     IBGE              Estado  UF               Região  Qtd Mun
+# 22    43   Rio Grande do Sul  RS           Região Sul      497
+# 23    50  Mato Grosso do Sul  MS  Região Centro-Oeste       79
+# 24    51         Mato Grosso  MT  Região Centro-Oeste      141
+# 25    52               Goiás  GO  Região Centro-Oeste      246
+# 26    53    Distrito Federal  DF  Região Centro-Oeste        1
+
+
+
+
+
+
+```
+
+
+### Manipulação de Dados
+
+A seguir são apresentados alguns comandos básicos para `manipulação` de dados em um `DataFrame`:
+
+```python
+# -*- coding: utf-8 -*-
+
+...
+
+# cria o dataframe a partir do dicionário de alunos
+alunos_dataframe = pd.DataFrame(alunos)
+
+# imprime as colunas e os tipos de dados identificados
+print(alunos_dataframe.dtypes)
+# Resultado:
+# nomes      object
+# faltas      int64
+# notas     float64
+# dtype: object
+
+
+# imprime a lista de colunas do dataframe
+print(alunos_dataframe.columns)
+# Resultado:
+# Index(['nomes', 'faltas', 'notas'], dtype='object')
+
+
+# imprime a quantidade de linhas e colunas
+print(alunos_dataframe.shape)
+# Resultado:
+# (4, 3)
+
+
+# imprime informações do dataframe
+print(alunos_dataframe.info())
+# Resultado
+# <class 'pandas.core.frame.DataFrame'>
+# RangeIndex: 4 entries, 0 to 3
+# Data columns (total 3 columns):
+#  #   Column  Non-Null Count  Dtype
+# ---  ------  --------------  -----
+#  0   nomes   4 non-null      object
+#  1   faltas  4 non-null      int64
+#  2   notas   4 non-null      float64
+# dtypes: float64(1), int64(1), object(1)
+# memory usage: 224.0+ bytes
+
+
+# imprime os valores de uma única coluna
+print(alunos_dataframe['nomes'])
+# Resultado:
+# 0     Eduardo
+# 1      Heline
+# 2    Cristina
+# 3        Luiz
+# Name: nomes, dtype: object
+
+
+# imprime estatísticas do dataframe do forma resumida
+print(alunos_dataframe.describe())
+# Resultado:
+#          faltas     notas
+# count  4.000000  4.000000
+# mean   1.500000  7.625000
+# std    1.290994  1.376893
+# min    0.000000  6.000000
+# 25%    0.750000  6.750000
+# 50%    1.500000  7.750000
+# 75%    2.250000  8.625000
+# max    3.000000  9.000000
+
+
+# imprime o dataframe ordenado por uma das colunas
+print(alunos_dataframe.sort_values(by="nome"))
+# Resultado:
+#       nomes  faltas  notas
+# 2  Cristina       0    7.0
+# 0   Eduardo       2    9.0
+# 1    Heline       1    8.5
+# 3      Luiz       3    6.0
+
+
+# imprime um item do dataframe localizando este a partir do seu índice
+print(alunos_dataframe.loc[3])
+# Resultado:
+# nomes     Luiz
+# faltas       3
+# notas      6.0
+# Name: 3, dtype: object
+
+# imprime somente os registros que atendam a uma condição
+print(alunos_dataframe[alunos_dataframe['notas'] == 9])
+# Resultado:
+#      nomes  faltas  notas
+# 0  Eduardo       2    9.0
+
+
+# imprime somente os registros que atendam a mais de uma condição
+print(alunos_dataframe[alunos_dataframe['notas'] == 9 & alunos_dataframe['faltas'] == 2])
+# Resultado:
+#      nomes  faltas  notas
+# 0  Eduardo       2    9.0
+```
+
+Uma observação para o método `sort_values` é que este `não` modifica o `dataframe` original, apenas a visualização deste no momento do comando.
+
+Outro aspecto a ser o observado é que ao utilizar expressões de `indexação boleanda (Boolean Indexing)` para filtrar os registros baseado em condições, devemos usar `operadores bitwise`, sendo:
+* **& (e comercial)**: `and`
+* **| (pipe)**: `or`
+* **~ (til)**: `not`
+
+Verifique [este](https://medium.com/data-hackers/uma-introdução-simples-ao-pandas-1e15eea37fa1) e [este](https://medium.com/tech-grupozap/introdução-a-biblioteca-pandas-89fa8ed4fa38) artigo para mais `métodos` de manipulação de dados.
+
+Após manipular os dados, caso queira salver o seu `dataframe` para um arquivo basta executar:
+
+```python
+alunas_dataframe.to_csv("alunos.csv")
+```
+
+## Visualização de Dados
+
+Com o `Pandas` é possível utilizar gráficos para visualizar os dados facilmente através de biblioteca `matplotlib`.
+
+Para instalar a biblioteca basta executar:
+
+```python
+pip install matplotlib
+```
+
+Com a biblioteca instalada podemos iniciar a visualização dos dados:
+
+```python
+# imprime um gráfico com os estados dividos em regiões do país
+estados_dataframe["Região"].value_counts().plot.bar(title='Estados por Região')
+estados_dataframe["Região"].value_counts().plot.pie(title='Estados por Região')
+```
+
+![Gráfico Estados por Região 01](./images/jupyter-notebook-sample-dataframe-graph_01.png)
+
+![Gráfico Estados por Região 02](./images/jupyter-notebook-sample-dataframe-graph_02.png)
 
 ## Blibiotecas complementares
 
@@ -269,12 +526,4 @@ Para você que já programa em `R`, `SQL` e outras liguagens, consulte esse mate
 * https://www.codingame.com/playgrounds/52723/programacao-python-parte-3---prof--marco-vaz/pacote-pandas-series
 * https://medium.com/tech-grupozap/introdução-a-biblioteca-pandas-89fa8ed4fa38
 * https://harve.com.br/blog/programacao-python-blog/pandas-python-vantagens-e-como-comecar/
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
+* https://medium.com/tech-grupozap/introdução-a-biblioteca-pandas-89fa8ed4fa38

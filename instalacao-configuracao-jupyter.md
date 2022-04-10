@@ -44,9 +44,12 @@ A página abaixo será aberta no `navegador` no endereço `http://localhost:8888
 
 ![Jupyter Notebook](images/jupyter-notebook.png)
 
+**`ATENÇÃO`**: A pasta que você estiver executando o `Jupyter Notebook` será a pasta onde será armazenado seus arquivos de projeto.
+
 ## Referencias
 
 * https://pt.wikipedia.org/wiki/IPython
 * https://www.math.tecnico.ulisboa.pt/~ccal/python/nb01.html
 * https://pt.wikipedia.org/wiki/Projeto_Jupyter
 * https://www.zoom.com.br/pc-computador/deumzoom/jupyter-notebook-o-que-e-como-usar
+* https://medium.com/horadecodar/como-instalar-o-jupyter-notebook-windows-e-linux-20701fc583c
