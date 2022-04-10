@@ -230,7 +230,7 @@ Caso queira testar os códigos acima com um ambiente de desenvolvimento mais int
 
 ![Jupyter Notebook](./images/jupyter-notebook-sample.png)
 
-## Dataframe
+## DataFrame
 
 Um `DataFrame (quadro de dados)` é uma estrutura de dados `bidimensional` comparado a uma `planilha de excel` ou `tabela do banco de dados`, composto por `colunas`, `linhas` e um `índice`.
 
@@ -352,12 +352,6 @@ print(estados_dataframe.tail())
 # 24    51         Mato Grosso  MT  Região Centro-Oeste      141
 # 25    52               Goiás  GO  Região Centro-Oeste      246
 # 26    53    Distrito Federal  DF  Região Centro-Oeste        1
-
-
-
-
-
-
 ```
 
 
@@ -368,7 +362,13 @@ A seguir são apresentados alguns comandos básicos para `manipulação` de dado
 ```python
 # -*- coding: utf-8 -*-
 
-...
+import pandas as pd
+
+alunos = {
+    'nomes': [],
+    'faltas': [],
+    'notas': []
+}
 
 # cria o dataframe a partir do dicionário de alunos
 alunos_dataframe = pd.DataFrame(alunos)
@@ -467,14 +467,17 @@ print(alunos_dataframe[alunos_dataframe['notas'] == 9 & alunos_dataframe['faltas
 
 Uma observação para o método `sort_values` é que este `não` modifica o `dataframe` original, apenas a visualização deste no momento do comando.
 
-Outro aspecto a ser o observado é que ao utilizar expressões de `indexação boleanda (Boolean Indexing)` para filtrar os registros baseado em condições, devemos usar `operadores bitwise`, sendo:
+Outro aspecto a ser o observado é que ao utilizar expressões de `indexação boleana (Boolean Indexing)` para filtrar os registros baseado em condições, devemos usar `operadores bitwise`, sendo:
 * **& (e comercial)**: `and`
 * **| (pipe)**: `or`
 * **~ (til)**: `not`
 
-Verifique [este](https://medium.com/data-hackers/uma-introdução-simples-ao-pandas-1e15eea37fa1) e [este](https://medium.com/tech-grupozap/introdução-a-biblioteca-pandas-89fa8ed4fa38) artigo para mais `métodos` de manipulação de dados.
+Verifique os links abaixo para mais `métodos` de manipulação de dados:
+* [Uma introdução simples ao pandas](https://medium.com/data-hackers/uma-introdução-simples-ao-pandas-1e15eea37fa1)
+* [Introdução a biblioteca pandas](https://medium.com/tech-grupozap/introdução-a-biblioteca-pandas-89fa8ed4fa38)
+* [Pandas Docs](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html)
 
-Após manipular os dados, caso queira salver o seu `dataframe` para um arquivo basta executar:
+Após manipular os dados, caso queira salver o seu `DataFrame` para um arquivo basta executar:
 
 ```python
 alunas_dataframe.to_csv("alunos.csv")
