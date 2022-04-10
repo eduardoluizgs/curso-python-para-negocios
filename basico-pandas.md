@@ -224,6 +224,10 @@ print(idades_dos_alunos ** 2)
 # dtype: int64
 ```
 
+## Testando o código com ambiente interativo
+
+Caso queira testar os códigos acima com um ambiente de desenvolvimento mais interativo, veja a seção [Instalação e Configuração do Jupyter](./instalacao-configuracao-jupyter.md)
+
 ## Dataframe
 
 Um `DataFrame (quadro de dados)` é comparado a uma `planilha de excel` ou `tabela do banco de dados`, composto por `colunas`, `linhas` e adicionalmente um `índice`.
